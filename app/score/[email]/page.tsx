@@ -23,10 +23,10 @@ const ScorePage = ({ params }: { params: { email: string } }) => {
 
   return (
     <div className="pt-14 flex w-full justify-center">
-      <div className="m-0 p-0 flex flex-col items-center max-w-[700px] min-w-[545px] gap-8">
+      <div className="m-0 p-0 flex flex-col items-center lg:max-w-[700px] lg:min-w-[545px] gap-8">
         <div
           id="hero"
-          className="border-4 w-full border-green-600 py-4 px-16 text-4xl font-bold flex justify-center"
+          className="border-4 w-full border-green-600 py-4 px-16 lg:text-4xl text-3xl font-bold flex justify-center"
         >
           Quiz Application
         </div>

@@ -59,9 +59,9 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextResponse) {
-  const data = await req.json();
+  const { email, score } = await req.json();
 
-  const result: any = await putQuizScore(data);
+  const result: any = await putQuizScore({ email, score });
   if (result.message) {
     return NextResponse.json(
       { message: result.message },

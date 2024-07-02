@@ -1,5 +1,6 @@
-export const quiz = {
-  question1: {
+export const quiz = [
+  {
+    id: "question1",
     question: "What is JavaScript?",
     options: {
       a: "A programming language",
@@ -9,7 +10,8 @@ export const quiz = {
     },
     answer: "a",
   },
-  question2: {
+  {
+    id: "question2",
     question: "What is the purpose of the 'typeof' operator in JavaScript?",
     options: {
       a: "To check the data type of a variable",
@@ -19,7 +21,8 @@ export const quiz = {
     },
     answer: "a",
   },
-  question3: {
+  {
+    id: "question3",
     question: "How do you declare a variable in JavaScript?",
     options: {
       a: "var",
@@ -29,7 +32,8 @@ export const quiz = {
     },
     answer: "a",
   },
-  question4: {
+  {
+    id: "question4",
     question: "What does the '===' operator in JavaScript do?",
     options: {
       a: "Compares values for equality without type coercion",
@@ -39,7 +43,8 @@ export const quiz = {
     },
     answer: "a",
   },
-  question5: {
+  {
+    id: "question5",
     question: "What is the result of the expression '5 + \"5\"'?",
     options: {
       a: "10",
@@ -49,7 +54,8 @@ export const quiz = {
     },
     answer: "d",
   },
-  question6: {
+  {
+    id: "question6",
     question: "Which keyword is used to define a function in JavaScript?",
     options: {
       a: "function",
@@ -59,7 +65,8 @@ export const quiz = {
     },
     answer: "a",
   },
-  question7: {
+  {
+    id: "question7",
     question: "What is the purpose of the 'return' statement in a function?",
     options: {
       a: "To print a value to the console",
@@ -69,7 +76,8 @@ export const quiz = {
     },
     answer: "b",
   },
-  question8: {
+  {
+    id: "question8",
     question: "How do you comment a single-line in JavaScript?",
     options: {
       a: "//",
@@ -79,7 +87,8 @@ export const quiz = {
     },
     answer: "a",
   },
-  question9: {
+  {
+    id: "question9",
     question:
       "What is the difference between 'null' and 'undefined' in JavaScript?",
     options: {
@@ -90,7 +99,8 @@ export const quiz = {
     },
     answer: "b",
   },
-  question10: {
+  {
+    id: "question10",
     question: "What does the 'this' keyword refer to in JavaScript?",
     options: {
       a: "The current function",
@@ -100,4 +110,4 @@ export const quiz = {
     },
     answer: "b",
   },
-};
+];

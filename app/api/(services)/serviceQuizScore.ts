@@ -34,7 +34,6 @@ export async function getOneQuizInfo(email: string) {
     if (!quizInfo) await init();
     if (!quizInfo) throw new Error("Collection is not initialized");
 
-    console.log("🚀 ~ getOneQuizInfo ~ email:", email);
     const result = await quizInfo.findOne({ email });
 
     if (!result) {
@@ -66,11 +65,15 @@ export async function postQuizScore(data: QuizScoresProp) {
   return { quiz: "Quiz info added successfuly!", result };
 }
 
-export async function putQuizScore(data: QuizScoresProp) {
+export async function putQuizScore({
+  email,
+  score,
+}: {
+  email: string;
+  score: number;
+}) {
   if (!quizInfo) await init();
   if (!quizInfo) throw new Error("Collection is not initialized");
-
-  const { email, score } = data;
 
   try {
     const result = await quizInfo.findOneAndUpdate(

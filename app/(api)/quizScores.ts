@@ -29,7 +29,7 @@ export async function editeQuizScore({
   }
 }
 
-export async function getOneQuizInfo(email: string ) {
+export async function getOneQuizInfo(email: string) {
   try {
     const result = await axios.patch(`${url}/quiz-scores`, {
       email,
