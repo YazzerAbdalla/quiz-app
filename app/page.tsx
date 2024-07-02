@@ -19,7 +19,7 @@ function Home() {
     if (result?.status === 200) {
       router.push("/quiz");
     } else if (result?.response.status === 400) {
-      router.push(`/score/${encodeURIComponent(value)}`);
+      router.push(`/score/${decodeURIComponent(value)}`);
     }
   };
 

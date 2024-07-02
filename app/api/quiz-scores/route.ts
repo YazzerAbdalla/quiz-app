@@ -1,13 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
-  getQuizInfoes,
+  getOneQuizInfo,
   postQuizScore,
   putQuizScore,
 } from "../(services)/serviceQuizScore";
 
-export async function GET() {
-  const result = await getQuizInfoes();
-  return NextResponse.json(result);
+export async function PATCH(req: NextRequest) {
+  try {
+    const { email } = await req.json();
+    const result = await getOneQuizInfo(email);
+    if (!result.data) {
+      return NextResponse.json(
+        { message: result.message },
+        { status: result.status }
+      );
+    }
+    return NextResponse.json(
+      { message: { message: result.message, data: result.data } },
+      { status: result.status }
+    );
+  } catch (error: any) {
+    console.error("Error fetching quiz info:", error);
+    return NextResponse.json(
+      { message: "Failed to fetch quiz info", error: error.message },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(req: NextRequest) {

@@ -29,6 +29,28 @@ export async function getQuizInfoes() {
   const result = await quizInfo.find({}).toArray();
   return { "Quiz scores": result };
 }
+export async function getOneQuizInfo(email: string) {
+  try {
+    if (!quizInfo) await init();
+    if (!quizInfo) throw new Error("Collection is not initialized");
+
+    console.log("🚀 ~ getOneQuizInfo ~ email:", email);
+    const result = await quizInfo.findOne({ email });
+
+    if (!result) {
+      return { message: "Quiz info not found", status: 404 };
+    }
+
+    return {
+      message: "Quiz info retrieved successfully",
+      status: 200,
+      data: result,
+    };
+  } catch (error) {
+    // console.error("Error fetching quiz info:", error);
+    return { message: "Failed to fetch quiz info", status: 500 };
+  }
+}
 
 export async function postQuizScore(data: QuizScoresProp) {
   if (!quizInfo) await init();
@@ -52,7 +74,7 @@ export async function putQuizScore(data: QuizScoresProp) {
 
   try {
     const result = await quizInfo.findOneAndUpdate(
-      { email: email.trim() },
+      { email },
       { $set: { score } },
       { returnDocument: "after" }
     );

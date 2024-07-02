@@ -1,7 +1,26 @@
-import React from "react";
+"use client";
+import { getOneQuizInfo } from "@/app/(api)/quizScores";
+import QuizScoresProp from "@/types/score";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-const page = ({ params }: { params: { email: string } }) => {
+const ScorePage = ({ params }: { params: { email: string } }) => {
   const decodedEmail = decodeURIComponent(params.email);
+  const [userQuizInfo, setUserQuizInfo] = useState<
+    { _id: string } & QuizScoresProp
+  >({ _id: "asd", email: "ladsd", score: 0 });
+
+  const router = useRouter();
+
+  useEffect(() => {
+    getOneQuizInfo(decodedEmail).then((result) => {
+      setUserQuizInfo(result.data.message.data);
+    });
+  }, []);
+  const handleRestart = () => {
+    router.push(`/quiz/${userQuizInfo.email}`);
+  };
+
   return (
     <div className="pt-14 flex w-full justify-center">
       <div className="m-0 p-0 flex flex-col items-center max-w-[700px] min-w-[545px] gap-8">
@@ -26,14 +45,23 @@ const page = ({ params }: { params: { email: string } }) => {
           </div>
           <div className="w-full flex justify-between">
             <h1>Score</h1>
-            <h1>80</h1>
+            <h1>{userQuizInfo?.score}</h1>
           </div>
           <div className="w-full flex justify-between">
             <h1>Quiz Result</h1>
-            <h1 className="text-green-400 font-medium">Passed</h1>
+            <h1
+              className={` font-medium ${
+                userQuizInfo.score >= 50 ? "text-green-400" : "text-red-500"
+              }`}
+            >
+              {userQuizInfo.score >= 50 ? "Passed" : "Faild"}
+            </h1>
           </div>
         </div>
-        <button className="bg-yellow-300 w-fit py-2 px-8 rounded text-gray-800">
+        <button
+          onClick={handleRestart}
+          className="bg-yellow-300 w-fit py-2 px-8 rounded text-gray-800"
+        >
           Restart
         </button>
       </div>
@@ -41,4 +69,4 @@ const page = ({ params }: { params: { email: string } }) => {
   );
 };
 
-export default page;
+export default ScorePage;
