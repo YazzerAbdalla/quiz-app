@@ -1,6 +1,7 @@
 import clientPromise from "@/lib/db";
 import QuizScoresProp from "@/types/score";
 import { MongoClient, Db, Collection, InsertOneResult } from "mongodb";
+import { Eagle_Lake } from "next/font/google";
 
 let client: MongoClient | undefined;
 let db: Db | undefined;
@@ -41,4 +42,28 @@ export async function postQuizScore(data: QuizScoresProp) {
     ...data,
   });
   return { quiz: "Quiz info added successfuly!", result };
+}
+
+export async function putQuizScore(data: QuizScoresProp) {
+  if (!quizInfo) await init();
+  if (!quizInfo) throw new Error("Collection is not initialized");
+
+  const { email, score } = data;
+
+  try {
+    const result = await quizInfo.findOneAndUpdate(
+      { email: email.trim() },
+      { $set: { score } },
+      { returnDocument: "after" }
+    );
+    console.log("🚀 ~ putQuizScore ~ result:", result);
+
+    if (!result?.email) {
+      return { message: "Email not found", status: 500 };
+    }
+
+    return result;
+  } catch (error: any) {
+    return { message: `Failed to update score: ${error.message}`, status: 500 };
+  }
 }

@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getQuizInfoes, postQuizScore } from "../(services)/serviceQuizScore";
+import {
+  getQuizInfoes,
+  postQuizScore,
+  putQuizScore,
+} from "../(services)/serviceQuizScore";
 
 export async function GET() {
   const result = await getQuizInfoes();
@@ -34,4 +38,17 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+export async function PUT(req: NextResponse) {
+  const data = await req.json();
+
+  const result: any = await putQuizScore(data);
+  if (result.message) {
+    return NextResponse.json(
+      { message: result.message },
+      { status: result.status }
+    );
+  }
+  return NextResponse.json({ result });
 }
