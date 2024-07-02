@@ -7,7 +7,7 @@ export async function postQuizEmail(email: string) {
       score: "0",
     });
     return result;
-  } catch (e) {
-    console.log(e);
+  } catch (e: any) {
+    return e;
   }
 }
