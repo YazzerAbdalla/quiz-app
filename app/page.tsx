@@ -16,8 +16,9 @@ function Home() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const result = await postQuizEmail(value);
-    if (result?.status === 200) {
-      router.push("/quiz");
+    console.log("🚀 ~ handleSubmit ~ result:", result);
+    if (result?.status === 201) {
+      router.push(`/quiz/${value}`);
     } else if (result?.response.status === 400) {
       router.push(`/score/${decodeURIComponent(value)}`);
     }

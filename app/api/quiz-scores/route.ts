@@ -9,14 +9,14 @@ export async function PATCH(req: NextRequest) {
   try {
     const { email } = await req.json();
     const result = await getOneQuizInfo(email);
-    
+
     if (!result.data) {
       return NextResponse.json(
         { message: result.message },
         { status: result.status }
       );
     }
-    
+
     return NextResponse.json(
       { message: result.message, data: result.data },
       { status: result.status }
@@ -72,14 +72,14 @@ export async function PUT(req: NextRequest) {
     }
 
     const result: any = await putQuizScore({ email, score });
-    
+
     if (result.message) {
       return NextResponse.json(
         { message: result.message },
         { status: result.status }
       );
     }
-    
+
     return NextResponse.json(result, { status: 200 });
   } catch (error: any) {
     console.error("Error updating quiz score:", error);

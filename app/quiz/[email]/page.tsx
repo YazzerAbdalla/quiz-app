@@ -10,7 +10,6 @@ const QuizPage = ({ params }: { params: { email: string } }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isChoosed, setIsChoosed] = useState({ isChoosed: false, option: "" });
   const [myChoices, setMyChoices] = useState<MyChoicesProps[]>([]);
-  console.log("🚀 ~ QuizPage ~ myChoices:", myChoices);
   const router = useRouter();
 
   const handleChooseOption = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -48,7 +47,6 @@ const QuizPage = ({ params }: { params: { email: string } }) => {
         email: decodeURIComponent(params.email),
         score: calcTheScore(),
       });
-      console.log("🚀 ~ handleNextClick ~ result:", result);
 
       return router.push(`/score/${params.email}`);
     }

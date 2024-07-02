@@ -14,7 +14,7 @@ const ScorePage = ({ params }: { params: { email: string } }) => {
 
   useEffect(() => {
     getOneQuizInfo(decodedEmail).then((result) => {
-      setUserQuizInfo(result.data.message.data);
+      setUserQuizInfo(result.data.data);
     });
   }, []);
   const handleRestart = () => {
