@@ -3,19 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255; /* Always white text */
+  --background-start-rgb: 34, 34, 34; /* Always dark background */
+  --background-end-rgb: 34, 34, 34; /* Always dark background */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 34, 34, 34;
-    --background-end-rgb: 34, 34, 34;
-  }
-}
-
+/* Remove prefers-color-scheme media query to always use dark theme colors */
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
