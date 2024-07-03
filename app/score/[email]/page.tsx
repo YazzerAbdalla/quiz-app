@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { getOneQuizInfo } from "@/app/(api)/quizScores";
 import QuizScoresProp from "@/types/score";
